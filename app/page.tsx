@@ -1,5 +1,5 @@
 'use client'
-
+import type { User } from "firebase/auth";
 import { useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
@@ -21,8 +21,8 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 export default function Dashboard() {
-  const [user, setUser] = useState(null);
-  const [claimants, setClaimants] = useState([]);
+  const [user, setUser] = useState<User | null>(null);
+    const [claimants, setClaimants] = useState([]);
 
   const login = async () => {
     const result = await signInWithPopup(auth, provider);
